@@ -17,6 +17,7 @@
     "bower-bourbon": "*",
     "angular": "*",
     "angular-ui-router": "~0.2.11",
-    "ng-table": "~0.3.3"
+    "ng-table": "~0.3.3",
+    "bootstrap-sass": "~3.0.2"
   }
 }
