@@ -13,7 +13,7 @@ var validations = require(global.APP_DIR + '/libs/validations'),
 module.exports = exports = function(req, res, next) {
 
   req.expects = function(params) {
-    var _params = {}, _errors = [];
+    var _params = {}, _errors = {};
 
     for (var attribute in params) {
       var args = params[attribute];
@@ -38,19 +38,19 @@ module.exports = exports = function(req, res, next) {
             if (validation in validations) {
               var message = validations[validation](attribute, _params[attribute], validationValue);
               if (message) {
-                _errors.push(message);
+                _errors[attribute] = message;
               }
             } else {
-              _errors.push(i18n.get('validations.nonExistingValidation', {
+              _errors[attribute] = i18n.get('validations.nonExistingValidation', {
                 validation: validation
-              }));
+              });
             }
           });
         }
       }
     }
 
-    if (_errors.length) {
+    if (Object.keys(_errors).length) {
       throw _errors;
     } else {
       return _params;

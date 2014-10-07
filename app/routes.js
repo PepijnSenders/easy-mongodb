@@ -1,4 +1,5 @@
-var PagesController = require(global.APP_DIR + '/controllers/PagesController');
+var PagesController = require(global.APP_DIR + '/controllers/PagesController'),
+    ConnectionController = require(global.APP_DIR + '/controllers/ConnectionController');
 
 /**
  * @class  Routes
@@ -7,4 +8,6 @@ var PagesController = require(global.APP_DIR + '/controllers/PagesController');
  */
 module.exports = exports = function(app) {
   app.get('/', PagesController.hello);
+
+  app.post('/api/connect', ConnectionController.connect);
 };
