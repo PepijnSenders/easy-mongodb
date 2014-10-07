@@ -1,0 +1,1 @@
+module.exports = exports = { name: 'mongodb://localhost/easy_mongo_ddb'};

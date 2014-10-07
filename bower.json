@@ -1,0 +1,22 @@
+{
+  "name": "easy-mongo",
+  "version": "0.0.0",
+  "authors": [
+    "NoProtocol <info@noprotocol.nl>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower-bourbon": "*",
+    "angular": "*",
+    "angular-ui-router": "~0.2.11",
+    "ng-table": "~0.3.3"
+  }
+}

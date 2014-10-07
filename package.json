@@ -1,0 +1,31 @@
+{
+  "name": "easy-mongo",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "NoProtocol <info@noprotocol.nl>",
+  "license": "ISC",
+  "scripts": {
+    "start": "node app/index.js",
+    "postinstall": "bower install && gulp deploy"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "bower": "*",
+    "connect-multiparty": "*",
+    "cookie-parser": "*",
+    "dot": "*",
+    "ejs": "*",
+    "express": "*",
+    "jade": "*",
+    "morgan": "*",
+    "newrelic": "*",
+    "phantom": "*",
+    "phantomjs": "*",
+    "q": "*",
+    "sugar": "*",
+    "mongoose": "*",
+    "gulp": "*",
+    "gulp-livereload": "*",
+    "gulp-noprotocol": "*"
+  }
+}
