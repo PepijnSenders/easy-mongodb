@@ -1,12 +1,12 @@
 <div class="connect">
   <h1 class="connect__title">Welcome, establish your connection.</h1>
   <ul class="connect__buttons nav nav-tabs" role="tablist">
-    <li ng-click="connectionType = 'external'" ng-class="{'active': connectionType == 'external'}"><a>External connection</a></li>
-    <li ng-click="connectionType = 'local'" ng-class="{'active': connectionType == 'local'}"><a>Local connection</a></li>
+    <li ng-click="connection.type = 'external'" ng-class="{'active': connection.type == 'external'}"><a>External connection</a></li>
+    <li ng-click="connection.type = 'local'" ng-class="{'active': connection.type == 'local'}"><a>Local connection</a></li>
   </ul>
-  <div class="connect__pane" ng-if="connectionType == 'external'">
+  <div class="connect__pane" ng-if="connection.type == 'external'">
     <samp class="connect__preview">
-      mongodb://{{connection.user}}:{{connection.password}}@{{connection.url}}/{{connection.app}}
+      {{connection.uri}}
     </samp>
     <div class="connect__errors" ng-if="errors">
       <div class="text-danger" ng-repeat="error in errors">
@@ -45,5 +45,5 @@
       </div>
     </form>
   </div>
-  <div class="connect__pane" ng-if="connectionType == 'local'">test2</div>
+  <div class="connect__pane" ng-if="connection.type == 'local'">test2</div>
 </div>

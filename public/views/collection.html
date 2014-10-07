@@ -1,0 +1,16 @@
+<table ng-table="tableParams" class="table">
+  <thead>
+    <tr>
+      <th ng-repeat="field in collection.fields">
+        {{field}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="document in $data">
+      <td ng-repeat="field in collection.fields">
+        {{document[field]}}
+      </td>
+    </tr>
+  </tbody>
+</table>

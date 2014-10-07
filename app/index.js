@@ -23,9 +23,6 @@ app.use(phantom);
 app.use(expects);
 app.use(jade);
 
-var database = new Database();
-database.connect(config.get('database.name'));
-
 app.set('view engine', 'jade');
 app.set('public', global.PUBLIC_DIR);
 app.set('showStackError', true);

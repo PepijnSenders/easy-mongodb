@@ -9,5 +9,8 @@ var PagesController = require(global.APP_DIR + '/controllers/PagesController'),
 module.exports = exports = function(app) {
   app.get('/', PagesController.hello);
 
-  app.post('/api/connect', ConnectionController.connect);
+  app.get('/api/connect', ConnectionController.connect);
+  app.get('/api/collection', ConnectionController.getCollection);
+
+  app.get('/*', PagesController.hello);
 };

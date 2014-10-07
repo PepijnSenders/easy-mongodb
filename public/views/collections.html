@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li ng-repeat="collectionName in collectionNames" ng-class="{'active': activeCollectionName == collectionName}">
+    <a ui-sref="collections.collection({collectionName: collectionName})">{{collectionName}}</a>
+  </li>
+</ul>
+
+<div ui-view="collection"></div>

@@ -1,4 +1,5 @@
-var helpers = require(global.APP_DIR + '/libs/helpers');
+var helpers = require(global.APP_DIR + '/libs/helpers'),
+    sugar = require('sugar');
 
 /**
  * @class  Jade middleware

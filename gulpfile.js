@@ -12,7 +12,8 @@ gulp.task('bundle-libs', function() {
   gulp.src([
       'public/libs/angular/angular.js',
       'public/libs/angular-ui-router/release/angular-ui-router.js',
-      'public/libs/ng-table/ng-table.js'
+      'public/libs/ng-table/ng-table.js',
+      'public/libs/angular-local-storage/dist/angular-local-storage.js'
     ])
     .pipe(noprotocol.concat('libs.bundle.js'))
     .pipe(gulp.dest('public/dist'));
@@ -23,7 +24,7 @@ gulp.task('bundle-app', function () {
     .src(['public/js/**/*.js', 'public/views/**/*.html', 'public/js/directives/**/*.html'])
     .pipe(noprotocol.angular({
       name: 'easyMongoApp',
-      deps: ['ui.router', 'ngTable']
+      deps: ['ui.router', 'ngTable', 'LocalStorageModule']
     }))
     .pipe(gulp.dest('public/dist'));
 });
