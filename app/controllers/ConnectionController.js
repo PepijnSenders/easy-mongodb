@@ -1,5 +1,6 @@
 var Database = require(global.APP_DIR + '/classes/Database'),
-    Connection = require(global.APP_DIR + '/models/Connection');
+    Connection = require(global.APP_DIR + '/models/Connection'),
+    Q = require('q');
 
 module.exports = exports = {
 
@@ -69,6 +70,13 @@ module.exports = exports = {
         page: {
           type: 'number',
           validations: 'required'
+        },
+        fields: {
+          type: 'array',
+          validations: 'required'
+        },
+        sorting: {
+          type: 'object'
         }
       });
     } catch(errors) {
@@ -83,8 +91,13 @@ module.exports = exports = {
       .connect(params.uri)
       .then(function(db) {
         _collection = db.collection(params.collectionName);
-
-        return Connection.guessFields(_collection);
+        if (params.fields && params.fields.length > 0) {
+          var defer = Q.defer();
+          defer.resolve(params.fields);
+          return defer.promise;
+        } else {
+          return Connection.guessFields(_collection);
+        }
       })
       .then(function(fields) {
         _fields = fields;
@@ -92,7 +105,7 @@ module.exports = exports = {
       })
       .then(function(count) {
         _count = count;
-        return Connection.getDocuments(_collection, params.count, params.page);
+        return Connection.getDocuments(_collection, params.count, params.page, params.sorting);
       })
       .then(function(documents) {
         res.status(200).send({

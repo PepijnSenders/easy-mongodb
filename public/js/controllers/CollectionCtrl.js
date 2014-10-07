@@ -4,7 +4,7 @@ app.controller('CollectionCtrl', function($scope, ngTableParams, Connection, $st
 
   $scope.tableParams = new ngTableParams({
     page: 1,
-    count: 5
+    count: 10
   }, {
     total: 0,
     getData: function($defer, params) {
@@ -12,11 +12,18 @@ app.controller('CollectionCtrl', function($scope, ngTableParams, Connection, $st
       Connection.getCollection({
         page: params.page(),
         count: params.count(),
-        fields: $scope.collection ? $scope.collection.fields : [],
+        fields: $scope.collection ? $scope.collection.fields.join('|') : null,
         collectionName: Connection.getCurrentCollection(),
-        uri: Connection.getConnection().uri
+        uri: Connection.getConnection().uri,
+        sorting: params.sorting()
       }).then(function(collection) {
         $scope.collection = collection;
+        $scope.fields = collection.fields.map(function(field) {
+          return {
+            name: field,
+            visible: true
+          };
+        });
         params.total(collection.total);
         $defer.resolve(collection.documents);
       });

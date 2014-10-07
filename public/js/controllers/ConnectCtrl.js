@@ -1,5 +1,6 @@
 app.controller('ConnectCtrl', function($scope, Connection, $interpolate, $state) {
 
+
   $scope.connection = {
     type: 'external'
   };

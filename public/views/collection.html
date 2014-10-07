@@ -1,18 +1,33 @@
 <div class="collection">
-  <table ng-table="tableParams" class="table">
-    <thead>
-      <tr>
-        <th ng-repeat="field in collection.fields">
-          {{field}}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="document in $data">
-        <td ng-repeat="field in collection.fields">
-          {{document[field]}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="collection__options" ng-if="showOptions">
+    <h4>Show fields:</h4>
+    <label class="collection__checkbox" ng-repeat="field in fields" for="{{field.name}}">
+      <input type="checkbox" id="{{field.name}}" ng-model="field.visible" />
+      {{field.name}}
+    </label>
+    <h4>Search:</h4>
+    <input type="text" class="form-control" ng-model="query.search" />
+  </div>
+  <button class="collection__options-button btn btn-primary" ng-click="showOptions = !showOptions">
+    <span ng-if="showOptions">Hide options</span>
+    <span ng-if="!showOptions">Show options</span>
+  </button>
+  <div class="collection__table-container">
+    <table ng-table="tableParams" class="table">
+      <thead>
+        <tr>
+          <th ng-repeat="field in fields" ng-if="field.visible" class="sortable" ng-class="{'sort-asc': tableParams.isSortBy(field.name, 'asc'), 'sort-desc': tableParams.isSortBy(field.name, 'desc')}" ng-click="tableParams.sorting(field.name, tableParams.isSortBy(field.name, 'asc') ? 'desc' : 'asc')">
+            {{field.name}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="document in $data">
+          <td ng-repeat="field in fields" ng-if="field.visible">
+            {{document[field.name]}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

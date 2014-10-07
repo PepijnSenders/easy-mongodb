@@ -28,10 +28,16 @@ module.exports = exports = {
     return defer.promise;
   },
 
-  getDocuments: function(collection, count, page) {
+  getDocuments: function(collection, count, page, sorting) {
     var defer = Q.defer();
 
-    collection.find({}).limit(count).skip((page - 1) * count).toArray(function(err, documents) {
+    for (var sortField in sorting) {
+      sorting[sortField] = sorting[sortField] === 'asc' ? 1 : -1;
+    }
+
+    console.log(sorting);
+
+    collection.find({}).limit(count).skip((page - 1) * count).sort(sorting).toArray(function(err, documents) {
       if (err) {
         return defer.reject(err);
       }
